@@ -8,7 +8,7 @@ const Counter = () => {
   const [sets, setSets] = useState("");
   const [reps, setReps] = useState("");
   const [workoutList, setWorkoutList] = useState([]);
-  const [editIndex, setEditIndex] = useState(null);
+  const [editId, setEditId] = useState(null);
   const [searchWorkout, setSearchWorkout] = useState("");
 
   return (
@@ -17,19 +17,33 @@ const Counter = () => {
         onSubmit={(e) => {
           e.preventDefault();
           if (!workout.trim()) return;
-          if (editIndex !== null) { //TODO: use new ID instead of index
+          if (editId !== null) {
+            //TODO: use new ID instead of index
             setWorkoutList(
-              workoutList.map((item, i) =>
-                i === editIndex
-                  ? { workout: workout, weight: weight, sets: sets, reps: reps }
+              workoutList.map((item) =>
+                item.id === editId
+                  ? {
+                      id: editId,
+                      workout: workout,
+                      weight: weight,
+                      sets: sets,
+                      reps: reps,
+                    }
                   : item,
               ),
             );
-            setEditIndex(null);
-          } else { // TODO: add ID so when search is active, the right id is used
+            setEditId(null);
+          } else {
+            // TODO: add ID so when search is active, the right id is used
             setWorkoutList([
               ...workoutList,
-              { workout: workout, weight: weight, sets: sets, reps: reps },
+              {
+                id: Date.now(),
+                workout: workout,
+                weight: weight,
+                sets: sets,
+                reps: reps,
+              },
             ]);
           }
           setWorkout("");
@@ -93,26 +107,29 @@ const Counter = () => {
         .filter((work, i) =>
           work.workout.toLowerCase().includes(searchWorkout.toLowerCase()),
         ) //renders the array contents
-        .map((workout, index) => (
-          <div key={index}>
+        .map((workout) => (
+          <div key={workout.id}>
             <h2>{workout.workout}</h2>
             <h2>Weight: {workout.weight}</h2>
             <h2>Sets: {workout.sets}</h2>
             <h2>Reps: {workout.reps}</h2>
             <button
               onClick={() =>
-                setWorkoutList(workoutList.filter((_, i) => i !== index))
+                setWorkoutList(
+                  workoutList.filter((item) => item.id !== workout.id),
+                )
               }
             >
               Delete
             </button>
             <button
+              type="button"
               onClick={() => {
                 setWorkout(workout.workout);
                 setWeight(workout.weight);
                 setSets(workout.sets);
                 setReps(workout.reps);
-                setEditIndex(index);
+                setEditId(workout.id);
               }}
             >
               Edit

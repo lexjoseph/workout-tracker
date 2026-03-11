@@ -4,8 +4,6 @@ import WorkoutForm from "./WorkoutForm";
 import WorkoutList from "./WorkoutList";
 
 const WorkoutApp = () => {
-  //random counter
-  //const [count, setCount] = useState(0);
 
   //properties for workout
   const [workout, setWorkout] = useState("");
@@ -92,15 +90,7 @@ const WorkoutApp = () => {
         onDelete={handleDelete}
         onEdit={handleEdit}
       />
-      {/* <h2>{count}</h2>
-      <button onClick={() => setCount(count + 1)}>+</button>
-      <button
-        onClick={() => {
-          if (count > 0) setCount(count - 1);
-        }}
-      >
-        -
-      </button> */}
+
     </div>
   );
 };

@@ -1,97 +1,9 @@
 "use client";
 import { useState } from "react";
+import WorkoutForm from "./WorkoutForm";
+import WorkoutList from "./WorkoutList";
 
-const WorkoutForm = ({
-  workout,
-  setWorkout,
-  weight,
-  setWeight,
-  sets,
-  setSets,
-  reps,
-  setReps,
-  onSubmit,
-  onClear,
-  searchWorkout,
-  setSearchWorkout,
-  editId,
-}) => {
-  return (
-    <form onSubmit={onSubmit}>
-      <div>
-        <input
-          type="text"
-          value={workout}
-          placeholder="Enter a workout"
-          onChange={(e) => setWorkout(e.target.value)}
-        ></input>
-
-        <input
-          value={searchWorkout}
-          placeholder="Search Workout"
-          onChange={(e) => setSearchWorkout(e.target.value)}
-        ></input>
-      </div>
-      <div>
-        <input
-          type="text"
-          value={weight}
-          placeholder="Enter weight"
-          onChange={(e) => setWeight(e.target.value)}
-        ></input>
-      </div>
-      <div>
-        <input
-          type="text"
-          value={sets}
-          placeholder="Enter sets"
-          onChange={(e) => setSets(e.target.value)}
-        ></input>
-      </div>
-      <div>
-        <input
-          type="text"
-          value={reps}
-          placeholder="Enter reps"
-          onChange={(e) => setReps(e.target.value)}
-        ></input>
-      </div>
-      <button type="submit">
-        {editId !== null ? "Update Workout" : "Add Workout"}
-      </button>
-      <button type="button" onClick={onClear}>
-        Clear
-      </button>
-    </form>
-  );
-};
-
-const WorkoutList = ({ workoutList, searchWorkout, onDelete, onEdit }) => {
-  return (
-    <>
-      {workoutList //filters the array
-        .filter((work) =>
-          work.workout.toLowerCase().includes(searchWorkout.toLowerCase()),
-        ) //renders the array contents
-        .map((workout) => (
-          <div key={workout.id}>
-            <h2>{workout.workout}</h2>
-            <h2>Weight: {workout.weight}</h2>
-            <h2>Sets: {workout.sets}</h2>
-            <h2>Reps: {workout.reps}</h2>
-            <button type="button" onClick={() => onDelete(workout.id)}>
-              Delete
-            </button>
-            <button type="button" onClick={() => onEdit(workout)}>
-              Edit
-            </button>
-          </div>
-        ))}
-    </>
-  );
-};
-
-const Counter = () => {
+const WorkoutApp = () => {
   //random counter
   //const [count, setCount] = useState(0);
 
@@ -193,4 +105,4 @@ const Counter = () => {
   );
 };
 
-export default Counter;
+export default WorkoutApp;

@@ -59,7 +59,7 @@ const WorkoutForm = ({
       <button type="submit">
         {editId !== null ? "Update Workout" : "Add Workout"}
       </button>
-      <button type="button" onClick={() => onClear}>
+      <button type="button" onClick={onClear}>
         Clear
       </button>
     </form>
@@ -93,7 +93,7 @@ const WorkoutList = ({ workoutList, searchWorkout, onDelete, onEdit }) => {
 
 const Counter = () => {
   //random counter
-  const [count, setCount] = useState(0);
+  //const [count, setCount] = useState(0);
 
   //properties for workout
   const [workout, setWorkout] = useState("");
@@ -107,55 +107,46 @@ const Counter = () => {
 
   const [searchWorkout, setSearchWorkout] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!workout.trim()) return;
-    if (editId !== null) {
-      //TODO: use new ID instead of index - Done
-      setWorkoutList(
-        workoutList.map((item) =>
-          item.id === editId
-            ? {
-                id: editId,
-                workout: workout,
-                weight: weight,
-                sets: sets,
-                reps: reps,
-              }
-            : item,
-        ),
-      );
-      setEditId(null);
-    } else {
-      // TODO: add ID so when search is active, the right id is used - DONE
-      setWorkoutList([
-        ...workoutList,
-        {
-          id: Date.now(),
-          workout: workout,
-          weight: weight,
-          sets: sets,
-          reps: reps,
-        },
-      ]);
-    }
+  const resetForm = () => {
     setWorkout("");
     setWeight("");
     setSets("");
     setReps("");
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!workout.trim()) return;
+
+    const workoutItem = {
+      id: editId ?? Date.now(),
+      workout: workout,
+      weight: weight,
+      sets: sets,
+      reps: reps,
+    };
+
+    if (editId !== null) {
+      //TODO: use new ID instead of index - Done
+      setWorkoutList(
+        workoutList.map((item) => (item.id === editId ? workoutItem : item)),
+      );
+      setEditId(null);
+    } else {
+      // TODO: add ID so when search is active, the right id is used - DONE
+      setWorkoutList([workoutItem, ...workoutList]);
+    }
+    resetForm();
+  };
+
   const handleClear = () => {
-    setWorkout("");
-    setWeight("");
-    setSets("");
-    setReps("");
+    resetForm();
     setEditId(null);
   };
 
   const handleEdit = (workoutItem) => {
     setWorkout(workoutItem.workout);
-    setWeight(workouItemt.weight);
+    setWeight(workoutItem.weight);
     setSets(workoutItem.sets);
     setReps(workoutItem.reps);
     setEditId(workoutItem.id);
@@ -171,7 +162,7 @@ const Counter = () => {
         workout={workout}
         setWorkout={setWorkout}
         weight={weight}
-        setWeight={setSearchWorkout}
+        setWeight={setWeight}
         sets={sets}
         setSets={setSets}
         reps={reps}
@@ -189,7 +180,7 @@ const Counter = () => {
         onDelete={handleDelete}
         onEdit={handleEdit}
       />
-      <h2>{count}</h2>
+      {/* <h2>{count}</h2>
       <button onClick={() => setCount(count + 1)}>+</button>
       <button
         onClick={() => {
@@ -197,7 +188,7 @@ const Counter = () => {
         }}
       >
         -
-      </button>
+      </button> */}
     </div>
   );
 };

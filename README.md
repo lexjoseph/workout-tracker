@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+🏋️ Workout Tracker App
 
-## Getting Started
+A modern, responsive workout tracking web application that allows users to log workouts, track progress, and stay consistent with their fitness goals.
 
-First, run the development server:
+👉 Live App: https://workout-tracker-two-lovat.vercel.app
 
-```bash
+👉 Repository: https://github.com/lexjoseph/workout-tracker
+
+🚀 Overview
+
+The Workout Tracker App is designed to help users:
+
+Log workouts quickly and efficiently
+Track sets, reps, and weight
+View and manage workout history
+Stay consistent with fitness routines
+
+This project focuses on clean UI/UX, state management, and real-world frontend patterns.
+
+🧠 Key Features
+
+✅ Add new workouts (exercise, sets, reps, weight)
+
+✅ Edit and delete workouts
+
+✅ Real-time UI updates
+
+✅ Responsive design (mobile + desktop)
+
+✅ Clean and intuitive user experience
+
+🧱 Tech Stack
+
+Frontend: React + TypeScript
+
+Build Tool: Vite
+
+Styling: CSS / Tailwind (update if needed)
+
+State Management: React Hooks (useState, useEffect)
+
+Deployment: Vercel
+
+
+🧪 Example Workflow
+User enters a workout:
+Exercise: Bench Press
+Sets: 4
+Reps: 8
+Weight: 185
+Workout is added to the list
+User can edit or delete entries
+UI updates instantly
+⚙️ Getting Started (Local Setup)
+1. Clone the repo
+git clone https://github.com/lexjoseph/workout-tracker.git
+cd workout-tracker
+2. Install dependencies
+npm install
+3. Run the app
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+4. Open in browser
+http://localhost:5173
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🧩 Key Concepts Demonstrated
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Component-based architecture | Controlled forms in React | State management with hooks | Type safety with TypeScript | Dynamic list rendering | Event handling & user input validation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+📈 Future Improvements
 
-## Learn More
+🔐 Authentication (login/signup) | ☁️ Backend integration (Spring Boot API) | 📊 Workout analytics dashboard | ✅ Persistent data storage | 📅 Calendar-based workout tracking | 📱 PWA support | 💡 Why This Project Matters
 
-To learn more about Next.js, take a look at the following resources:
+⭐️ Final Note
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is part of a growing portfolio focused on building real-world, production-ready applications that combine strong frontend experience with scalable backend systems.
